@@ -25,6 +25,7 @@ export class GroupingsComponent {
 
     @Output() onAllClicked = new EventEmitter();
     @Output() onFavoritesClicked = new EventEmitter();
+    @Output() onTOTPClicked = new EventEmitter();
     @Output() onCipherTypeClicked = new EventEmitter<CipherType>();
     @Output() onFolderClicked = new EventEmitter<FolderView>();
     @Output() onAddFolder = new EventEmitter();
@@ -39,6 +40,7 @@ export class GroupingsComponent {
     cipherType = CipherType;
     selectedAll: boolean = false;
     selectedFavorites: boolean = false;
+    selectedTOTP: boolean = false;
     selectedType: CipherType = null;
     selectedFolder: boolean = false;
     selectedFolderId: string = null;
@@ -101,6 +103,12 @@ export class GroupingsComponent {
         this.onFavoritesClicked.emit();
     }
 
+    selectTOTP() {
+        this.clearSelections();
+        this.selectedTOTP = true;
+        this.onTOTPClicked.emit();
+    }
+
     selectType(type: CipherType) {
         this.clearSelections();
         this.selectedType = type;
@@ -131,6 +139,7 @@ export class GroupingsComponent {
     clearSelections() {
         this.selectedAll = false;
         this.selectedFavorites = false;
+        this.selectedTOTP = false;
         this.selectedType = null;
         this.selectedFolder = false;
         this.selectedFolderId = null;
